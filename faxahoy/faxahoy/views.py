@@ -16,14 +16,13 @@ def home():
         year=datetime.now().year,
     )
 
-@app.route('/contact')
-def contact():
+@app.route('/login')
+def login():
     """Renders the contact page."""
     return render_template(
-        'contact.jade',
-        title='Contact',
+        'login.jade',
+        title='Login',
         year=datetime.now().year,
-        message='Your contact page.'
     )
 
 @app.route('/about')
@@ -33,5 +32,5 @@ def about():
         'about.jade',
         title='About',
         year=datetime.now().year,
-        message='Your application description page.'
+        message='a description of faxahoy!'
     )

@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    h1 #{title}
+    form(action='' method='POST' name='login')
+        label(for='name') Name:
+        input#name.form-control(type='text', placeholder='first and last' name='name')
