@@ -2,6 +2,9 @@ extends layout
 
 block content
     h1 #{title}
-    form(action='' method='POST' name='login')
-        label(for='name') Name:
-        input#name.form-control(type='text', placeholder='first and last' name='name')
+    form(action="/login", method="POST", name="login")
+        {{ form.hidden_tag() }}
+        p Please enter your openID:
+        {{ form.openid(size=80) }}
+        p {{ form.remember_me }} Remember Me
+        input(type="submit", value="Sign in")
