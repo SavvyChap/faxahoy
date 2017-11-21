@@ -3,8 +3,10 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
+from pip._vendor.requests.status_codes import title
 from flask import render_template
 from faxahoy import app
+from .forms import LoginForm
 
 @app.route('/')
 @app.route('/home')
@@ -16,13 +18,15 @@ def home():
         year=datetime.now().year,
     )
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    """Renders the contact page."""
-    return render_template(
-        'login.jade',
-        title='Login',
-        year=datetime.now().year,
+    form = LoginForm()
+    if form.validate_on_submit():
+        flash('Login requested for OpenID="%s", remember_me=%s' % (form.openid.data, str(form.remember_me.data)))
+        return redirect('/index')
+    return render_template('login.jade',
+                           title='Login',
+                           form=form
     )
 
 @app.route('/about')

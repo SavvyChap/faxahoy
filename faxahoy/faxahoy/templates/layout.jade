@@ -24,6 +24,13 @@ html
               a(href='/about') About
             li
               a(href='/login') Login
+    hr 
+    //
+        - var messages = get_flashed_messages()
+        if messages
+            ul
+            each message in messages ? messages : ['no message']
+            li = message
     .container.body-content
       block content
       hr
