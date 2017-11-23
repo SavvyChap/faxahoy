@@ -1,5 +1,8 @@
 extends layout
 
+block scripts
+    script(src="../static/scripts/login_openid.js")
+
 block content
     h1 #{title}
     form(action="/login", method="POST", name="login")
