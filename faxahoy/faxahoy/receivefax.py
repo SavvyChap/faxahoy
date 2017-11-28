@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 """Fax snippet."""
 
-from flask.ext.script import Manager
-from flask import Flask, Response, request
+from faxahoy import app
 
 @app.route('/fax/sent', methods=['POST'])
 def fax_sent():
