@@ -6,8 +6,8 @@ auth_token = "-----"
 client = Client(account_sid, auth_token)
 
 fax = client.fax.v1.faxes.create(
-    from_="+17132367768",
-    to="+13104992491",
+    from_="----",
+    to="----",
     media_url="https://www.twilio.com/docs/documents/25/justthefaxmaam.pdf")
 
 print(fax.sid)
