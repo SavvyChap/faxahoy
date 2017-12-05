@@ -2,6 +2,7 @@
 """Fax snippet."""
 
 from faxahoy import app
+from flaskext.mail import Mail, Message
 
 @app.route('/fax/sent', methods=['POST'])
 def fax_sent():
@@ -17,6 +18,12 @@ def fax_sent():
 @app.route('/fax/received', methods=['POST'])
 def fax_received():
     """ Will put email send function in here """
+    msg = Message(
+            'Hello',
+            sender='augustqmoney@gmail.com',
+            recipients=['a.money@uspm.us'])
+    msg.body = "Hello world"
+    mail.send(msg)
     print(request.form.get('MediaUrl'))
 
-    return '', 200
+    return 'sent', 200
