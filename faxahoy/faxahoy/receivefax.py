@@ -28,7 +28,7 @@ def ext7706(url, frm, fid):
     with app.open_resource(path + media) as fp:
         msg.attach(media, "application/pdf", fp.read())
     mail.send(msg)
-    print(sender + "->" + recipient)
+    print(sender + "-> 7706")
     return 'sent...'
 
 def ext7721(url, frm, fid):
@@ -48,7 +48,7 @@ def ext7721(url, frm, fid):
     with app.open_resource(path + media) as fp:
         msg.attach(media, "application/pdf", fp.read())
     mail.send(msg)
-    print(sender + "->" + recipient)
+    print(sender + "-> 7721")
     return 'sent...'
 
 def ext7722(url, frm, fid):
@@ -68,7 +68,7 @@ def ext7722(url, frm, fid):
     with app.open_resource(path + media) as fp:
         msg.attach(media, "application/pdf", fp.read())
     mail.send(msg)
-    print(sender + "->" + recipient)
+    print(sender + "-> 7722")
     return 'sent...'
 
 def ext7743(url, frm, fid):
@@ -88,7 +88,7 @@ def ext7743(url, frm, fid):
     with app.open_resource(path + media) as fp:
         msg.attach(media, "application/pdf", fp.read())
     mail.send(msg)
-    print(sender + "->" + recipient)
+    print(sender + "-> 7743")
     return 'sent...'
 
 def ext7768(url, frm, fid):
@@ -108,7 +108,7 @@ def ext7768(url, frm, fid):
     with app.open_resource(path + media) as fp:
         msg.attach(media, "application/pdf", fp.read())
     mail.send(msg)
-    print(sender + "->" + recipient)
+    print(sender + "-> 7768")
     return 'sent...'
 
 def ext7799(url, frm, fid):
@@ -128,15 +128,15 @@ def ext7799(url, frm, fid):
     with app.open_resource(path + media) as fp:
         msg.attach(media, "application/pdf", fp.read())
     mail.send(msg)
-    print(sender + "->" + recipient)
+    print(sender + "-> 7799")
     return 'sent...'
 
 @app.route('/fax/sent', methods=['POST'])
 def fax_sent():
-    twiml = """
-        <Response>
-            <Receive action="/fax/received"/>
-        </Response>
+    twiml = """<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Receive action="/fax/received"/>
+</Response>
     """
 
     return Response(twiml, mimetype='text/xml')
@@ -149,17 +149,17 @@ def fax_received():
     paper = request.form.get('MediaUrl')
     faxsid = request.form.get('FaxSid')
 
-    if sender == '+17132367706':
+    if recipient == '+17132367706':
         ext7706(paper, sender, faxsid)
-    elif sender == '+17132367721':
+    elif recipient == '+17132367721':
         ext7721(paper, sender, faxsid)
-    elif sender == '+17132367722':
+    elif recipient == '+17132367722':
         ext7722(paper, sender, faxsid)
-    elif sender == '+17132367743':
+    elif recipient == '+17132367743':
         ext7743(paper, sender, faxsid)
-    elif sender == '+17132367768':
+    elif recipient == '+17132367768':
         ext7768(paper, sender, faxsid)
-    elif sender == '+17132367799':
+    elif recipient == '+17132367799':
         ext7799(paper, sender, faxsid)
     else:
         print("sorry, unrecognized number")
