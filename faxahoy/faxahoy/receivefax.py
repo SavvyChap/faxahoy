@@ -149,7 +149,6 @@ def fax_received():
     paper = request.form.get('MediaUrl')
     faxsid = request.form.get('FaxSid')
 
-<<<<<<< HEAD
     if sender == '+17132367706':
         ext7706(paper, sender, faxsid)
     elif sender == '+17132367721':
@@ -164,24 +163,6 @@ def fax_received():
         ext7799(paper, sender, faxsid)
     else:
         print("sorry, unrecognized number")
-=======
-    time = datetime.now().strftime("%Y%m%d_%I%M%p")
-    theFile = requests.get(paper)
-    media = 'media_' + time + '.pdf'
-    path = "fax\\inbox\\" ### set for windows environment. change to fax/inbox/ for linux, mac ###
-    with open('faxahoy/fax/inbox/' + media, 'wb') as f:
-        f.write(theFile.content)
-
-    msg = Message(
-            'Hello',
-            sender='augustqmoney@gmail.com',
-            recipients=['a.money@uspm.us'])
-    msg.body = "You have received a fax from " + sender + "\n\n\n" + faxsid + "\n\n\n" + paper
-    with app.open_resource(path + media) as fp:
-        msg.attach(media, "application/pdf", fp.read())
-    mail.send(msg)
-    print(sender + "->" + recipient + "\n \n" + paper)
->>>>>>> 0a7426095366724e12e9f3c587d682dfbf8cb735
 
     return 'sent', 200
 
