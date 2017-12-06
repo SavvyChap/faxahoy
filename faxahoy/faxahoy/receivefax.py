@@ -30,7 +30,7 @@ def fax_received():
     time = datetime.now().strftime("%Y%m%d_%I%M%p")
     theFile = requests.get(paper)
     media = 'media_' + time + '.pdf'
-    path = "fax\\inbox\\"
+    path = "fax\\inbox\\" ### set for windows environment. change to fax/inbox/ for linux, mac ###
     with open('faxahoy/fax/inbox/' + media, 'wb') as f:
         f.write(theFile.content)
 
